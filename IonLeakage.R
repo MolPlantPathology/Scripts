@@ -51,14 +51,15 @@ p1
 #setting labels and titles
 p2 <- p1 + labs(x=xaxislabel, 
                 y=yaxislabel,
-                title = plottitle,subtitle = plotsubtitle
-                )
+                title = plottitle,
+                subtitle = plotsubtitle) +
+                ggtitle(bquote(atop(.(plottitle), atop(.(plotsubtitle), "")))
+               )
 p2
 
 #changing Theme
 p3 <- p2 +theme(
   plot.title = element_text(hjust = 0.5, color="black", size=20, face="bold"),
-  plot.subtitle = element_text(hjust = 0.5, color="dimgrey", size=12),
   axis.title.x = element_text(color="black", size=16, face="bold"),
   axis.title.y = element_text(color="black", size=16, face="bold"),
   panel.background = element_rect(fill = "#f5f8f1",
@@ -74,6 +75,7 @@ p3 <- p2 +theme(
   legend.background = element_rect(fill=alpha(0.0001))
 )
 p3
+
 
 # save to file
 ggsave(filename = "Ion-leakagePlot.png",plot = p3,width = 7,height = 5,dpi = 600)
